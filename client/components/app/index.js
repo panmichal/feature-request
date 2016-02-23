@@ -24,7 +24,7 @@ class App extends Component {
           title="Feature request app"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
-        <RequestBox/>
+        <RequestBox form={this.props.form} clients={this.props.clients}/>
       </div>
     </MuiThemeProvider>;
   }
@@ -32,8 +32,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    searchAutocomplete: state.searchAutocomplete,
-    searchResults: state.searchResults
+    form: state.form,
+    clients: state.clients
   };
 }
 

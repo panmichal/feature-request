@@ -24,8 +24,11 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 // Routes
 app.get('/', (request, response) => {
   const initialState = {
-    searchAutocomplete: [],
-    searchResults: [
+    form: {},
+    clients: [
+      { id: 1, name: 'Client A'},
+      { id: 2, name: 'Client B'},
+      { id: 3, name: 'Client C'}
     ]
   };
   const store = createStore((state=initialState) => state);
