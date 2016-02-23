@@ -7,7 +7,6 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import axios from 'axios';
 import App from './generated/app';
-import config from './config/config';
 
 const app = express();
 
@@ -40,31 +39,6 @@ app.get('/', (request, response) => {
     app: appContent,
     initialState: JSON.stringify(initialState)
   });
-});
-
-app.get('/autocomplete', (request, response) => {
-  const a = axios.create({
-    baseURL: 'https://maps.googleapis.com/maps/api/place/autocomplete'
-  });
-  a.get('/json', {
-    params: {
-      input: request.query.input,
-      key: config.googleApiKey
-    }
-  })
-  .then((res) => {
-    response.json(res.data.predictions.map((p) => p.description));
-  })
-  .catch(() => {
-    response.json([]);
-  });
-});
-
-app.get('/search', (request, response) => {
-  response.json([
-    { site: "Thorn tree", body: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos", id: 1},
-    { site: "Tripadvisor", body: "Nice city", id: 2},
-  ]);
 });
 
 export default app;
