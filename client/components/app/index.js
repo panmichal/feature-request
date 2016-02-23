@@ -26,7 +26,7 @@ class App extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
         <RequestList requests={this.props.requests}/>
-        <RequestBox form={this.props.form} clients={this.props.clients}/>
+        <RequestBox form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
       </div>
     </MuiThemeProvider>;
   }
@@ -36,7 +36,8 @@ function mapStateToProps(state) {
   return {
     form: state.form,
     clients: state.clients,
-    requests: state.requests
+    requests: state.requests,
+    areas: state.areas
   };
 }
 

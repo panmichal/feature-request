@@ -35,6 +35,12 @@ app.get('/', (request, response) => {
       { id: 2, title: 'Lorem Ipsum2', description: 'Really nice and easy to implement'},
       { id: 3, title: 'Lorem Ipsum3', description: 'Really nice and easy to implement'},
       { id: 4, title: 'Lorem Ipsum4', description: 'Really nice and easy to implement'},
+    ],
+    areas: [
+      { id: 1, name: 'Policies'},
+      { id: 2, name: 'Billing'},
+      { id: 3, name: 'Claims'},
+      { id: 4, name: 'Reports'}
     ]
   };
   const store = createStore((state=initialState) => state);

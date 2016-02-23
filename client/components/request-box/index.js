@@ -13,9 +13,12 @@ class RequestBox extends Component {
     const clients = this.props.clients.map(client => {
       return { id: client.id, value: client.name }
     })
+    const areas = this.props.areas.map(area => {
+      return { id: area.id, value: area.name }
+    })
     return <div id="request-box" style={style}>
      <Paper zDepth={2} >
-       <RequestForm clients={clients} form={this.props.form}/>
+       <RequestForm areas={areas} clients={clients} form={this.props.form}/>
       </Paper>
     </div>;
   };

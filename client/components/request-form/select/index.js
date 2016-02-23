@@ -12,7 +12,7 @@ class Select extends Component {
       return <MenuItem key={item.id} value={item.id} primaryText={item.value}/>
     })
     return <div>
-      <SelectField value={this.props.items[0].id}>
+      <SelectField value={this.props.items[0].id} floatingLabelText={this.props.label}>
         {menuItems}
       </SelectField>
     </div>;
