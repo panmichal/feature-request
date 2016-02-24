@@ -5,8 +5,8 @@ export const LOAD_REQUESTS = 'load-requests';
 export const LOAD_CLIENTS = 'load-clients';
 export const LOAD_AREAS = 'load-areas';
 
-export function submitRequest() {
-  return { type: SUBMIT_REQUEST };
+export function submitRequest(data) {
+  return { type: SUBMIT_REQUEST, data };
 }
 
 export function loadRequests() {

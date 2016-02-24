@@ -7,6 +7,9 @@ class Select extends Component {
     placeholder: PropTypes.string,
     label: PropTypes.string
   }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.value !== this.props.value;
+  }
   render() {
     const menuItems = this.props.items.map(item => {
       return <MenuItem key={item.id} value={item.id} primaryText={item.value}/>

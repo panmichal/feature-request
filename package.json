@@ -33,6 +33,7 @@
     "express-handlebars": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.14.4",
+    "node-uuid": "^1.4.7",
     "react-redux": "^4.4.0",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.3.1",

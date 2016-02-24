@@ -30,13 +30,14 @@ class RequestForm extends Component {
           label="Feature description"
           rows={4}
           {...description}/>
-        <Select items={this.props.clients} label="Client" {...client}/>
+        <Select {...client} items={this.props.clients} label="Client" {...client}/>
         <Number
           placeholder="Set request priority"
           label="Priority"
           {...priority}/>
         <Date placeholder="Target date"/>
           <Text
+            {...url}
             placeholder="url"
             label="Ticket URL"/>
         <Select items={this.props.areas} label="Area"/>
