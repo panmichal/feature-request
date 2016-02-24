@@ -13,6 +13,7 @@ class TextArea extends Component {
           floatingLabelText={this.props.label}
           value={this.props.value}
           multiLine={true}
+          onChange={this.props.onChange}
           rowsn={this.props.rows}/>
     </div>;
   };

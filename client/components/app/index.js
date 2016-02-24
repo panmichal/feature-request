@@ -7,7 +7,7 @@ import RequestBox from 'components/request-box';
 import RequestList from 'components/request-list';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as searchActionCreators from 'actions/search-actions';
+import * as requestActionCreators from 'actions/request-actions';
 import {} from './style.less';
 
 const muiTheme = getMuiTheme({
@@ -26,23 +26,24 @@ class App extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
         <RequestList requests={this.props.requests}/>
-        <RequestBox form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
+        <RequestBox form={this.props.form} handleSubmit={this.props.submitRequest} form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
       </div>
     </MuiThemeProvider>;
   }
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    form: state.form,
-    clients: state.clients,
-    requests: state.requests,
-    areas: state.areas
+    form: 'request',
+    clients: state.clients || state.data.clients,
+    requests: state.requests ||state.data.requests,
+    areas: state.areas || state.data.areas
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(searchActionCreators, dispatch);
+  return bindActionCreators(requestActionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

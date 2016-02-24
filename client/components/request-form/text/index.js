@@ -11,6 +11,7 @@ class Text extends Component {
       <TextField
           hintText={this.props.placeholder}
           floatingLabelText={this.props.label}
+          onChange={this.props.onChange}
           value={this.props.value}/>
     </div>;
   };

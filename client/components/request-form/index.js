@@ -6,6 +6,7 @@ import TextArea from 'components/request-form/text-area';
 import Select from 'components/request-form/select';
 import Number from 'components/request-form/number';
 import Date from 'components/request-form/date';
+import {reduxForm} from 'redux-form';
 
 const style = {
   submit: {
@@ -15,32 +16,40 @@ const style = {
 
 class RequestForm extends Component {
   render() {
-    return <div id="request-form">
-      <Text
-        value={this.props.form.title}
-        placeholder="Type the request title"
-        label="Feature title"/>
-      <TextArea
-        value={this.props.form.description}
-        placeholder="Type the request description"
-        label="Feature description"
-        rows={4}/>
-      <Select items={this.props.clients} label="Client"/>
-      <Number
-        value={this.props.form.priority}
-        placeholder="Set request priority"
-        label="Priority"/>
-      <Date placeholder="Target date"/>
+    const {
+      fields: {title, description, priority, client, date, url, area},
+      handleSubmit
+    } = this.props;
+    return <form id="request-form">
         <Text
-          value={this.props.form.url}
-          placeholder="url"
-          label="Ticket URL"/>
-      <Select items={this.props.areas} label="Area"/>
-      <div id="submit-button">
-        <RaisedButton label="Submit" primary={true} />
-      </div>
-    </div>;
+          placeholder="Type the request title"
+          label="Feature title"
+          {...title}/>
+        <TextArea
+          placeholder="Type the request description"
+          label="Feature description"
+          rows={4}
+          {...description}/>
+        <Select items={this.props.clients} label="Client" {...client}/>
+        <Number
+          placeholder="Set request priority"
+          label="Priority"
+          {...priority}/>
+        <Date placeholder="Target date"/>
+          <Text
+            placeholder="url"
+            label="Ticket URL"/>
+        <Select items={this.props.areas} label="Area"/>
+        <div id="submit-button">
+          <RaisedButton onClick={this.props.handleSubmit} label="Submit" primary={true} />
+        </div>
+      </form>;
   };
 }
+
+RequestForm = reduxForm({
+  form: 'request',
+  fields: ['title', 'description', 'priority', 'client', 'date', 'url', 'area']
+})(RequestForm);
 
 export default RequestForm;

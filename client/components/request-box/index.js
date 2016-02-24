@@ -18,7 +18,7 @@ class RequestBox extends Component {
     })
     return <div id="request-box" style={style}>
      <Paper zDepth={2} >
-       <RequestForm areas={areas} clients={clients} form={this.props.form}/>
+       <RequestForm onSubmit={this.props.handleSubmit} form={this.props.form} areas={areas} clients={clients} form={this.props.form}/>
       </Paper>
     </div>;
   };

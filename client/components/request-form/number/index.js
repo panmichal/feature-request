@@ -12,7 +12,8 @@ class Number extends Component {
           hintText={this.props.placeholder}
           floatingLabelText={this.props.label}
           value={this.props.value}
-          type="number"/>
+          type="number"
+          onChange={this.props.onChange}/>
     </div>;
   };
 }

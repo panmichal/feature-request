@@ -24,17 +24,17 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 // Routes
 app.get('/', (request, response) => {
   const initialState = {
-    form: {},
-    clients: [
-      { id: 1, name: 'Client A'},
-      { id: 2, name: 'Client B'},
-      { id: 3, name: 'Client C'}
-    ],
+    form: 'request',
     requests: [
       { id: 1, title: 'Lorem Ipsum1', description: 'Really nice and easy to implement'},
       { id: 2, title: 'Lorem Ipsum2', description: 'Really nice and easy to implement'},
       { id: 3, title: 'Lorem Ipsum3', description: 'Really nice and easy to implement'},
       { id: 4, title: 'Lorem Ipsum4', description: 'Really nice and easy to implement'},
+    ],
+    clients: [
+      { id: 1, name: 'ClientA'},
+      { id: 2, name: 'ClientB'},
+      { id: 3, name: 'ClientC'}
     ],
     areas: [
       { id: 1, name: 'Policies'},
