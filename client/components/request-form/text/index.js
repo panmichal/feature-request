@@ -9,6 +9,7 @@ class Text extends Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.value !== this.props.value;
   }
+
   render() {
     return <div>
       <TextField

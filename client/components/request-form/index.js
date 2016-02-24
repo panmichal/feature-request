@@ -15,6 +15,8 @@ const style = {
 }
 
 class RequestForm extends Component {
+  componentDidMount() {
+  }
   render() {
     const {
       fields: {title, description, priority, client, date, url, area},
@@ -30,17 +32,17 @@ class RequestForm extends Component {
           label="Feature description"
           rows={4}
           {...description}/>
-        <Select {...client} items={this.props.clients} label="Client" {...client}/>
+        <Select {...client} items={this.props.clients} label="Client"/>
         <Number
           placeholder="Set request priority"
           label="Priority"
           {...priority}/>
         <Date placeholder="Target date"/>
-          <Text
-            {...url}
-            placeholder="url"
-            label="Ticket URL"/>
-        <Select items={this.props.areas} label="Area"/>
+        <Text
+          {...url}
+          placeholder="url"
+          label="Ticket URL"/>
+        <Select {...area} items={this.props.areas} label="Area"/>
         <div id="submit-button">
           <RaisedButton onClick={this.props.handleSubmit} label="Submit" primary={true} />
         </div>

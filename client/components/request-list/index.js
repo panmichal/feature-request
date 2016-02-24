@@ -5,7 +5,10 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 const style = {
-  float: 'left'
+  float: 'left',
+  margin: 'auto',
+  width: '20%',
+  padding: '20px'
 }
 
 class RequestList extends Component {
