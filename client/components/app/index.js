@@ -33,7 +33,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     form: 'request',
     clients: state.clients || state.data.clients,
