@@ -13,7 +13,7 @@ export const RESET_FORM     = 'reset-form';
 
 export function submitRequest(data) {
   return function(dispatch) {
-      dispatch(addRequest(data));
+      dispatch(selectClient(data.client));
 
       return axios.post("/requests", data)
       .then(res => res.json())
