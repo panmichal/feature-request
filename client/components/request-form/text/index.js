@@ -14,6 +14,7 @@ class Text extends Component {
     return <div>
       <TextField
           hintText={this.props.placeholder}
+          errorText={this.props.error}
           floatingLabelText={this.props.label}
           onChange={this.props.onChange}
           value={this.props.value}/>

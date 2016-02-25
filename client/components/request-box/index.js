@@ -5,8 +5,9 @@ import Paper from 'material-ui/lib/paper';
 const style = {
   display: 'inline-block',
   verticalAlign: 'top',
+  horizontalAlign: 'center',
   margin: 'auto',
-  width: '30%',
+  width: '40%',
   padding: '20px'
 }
 

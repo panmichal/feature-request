@@ -12,12 +12,13 @@ class TextArea extends Component {
   render() {
     return <div>
       <TextField
+          errorText={this.props.error}
           hintText={this.props.placeholder}
           floatingLabelText={this.props.label}
           value={this.props.value}
           multiLine={true}
           onChange={this.props.onChange}
-          rowsn={this.props.rows}/>
+          rows={this.props.rows}/>
     </div>;
   };
 }

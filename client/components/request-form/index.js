@@ -7,11 +7,28 @@ import Select from 'components/request-form/select';
 import Number from 'components/request-form/number';
 import Date from 'components/request-form/date';
 import {reduxForm} from 'redux-form';
+import validUrl from 'valid-url';
 
 const style = {
   submit: {
     float: 'right'
   }
+}
+
+const validate = values => {
+  const errors = {};
+  if (!values.title) {
+    errors.title = 'Required';
+  } else if (values.title.length < 5 || values.title.length > 30) {
+    errors.title = 'Title length must be between 5 and 30 characters';
+  }
+  if (!values.description) {
+    errors.description = 'Request description is required';
+  }
+  if (values.url && !validUrl.isUri(values.url)) {
+    errors.url = 'Must be a valid URL';
+  }
+  return errors;
 }
 
 class RequestForm extends Component {
@@ -52,7 +69,8 @@ class RequestForm extends Component {
 
 RequestForm = reduxForm({
   form: 'request',
-  fields: ['title', 'description', 'priority', 'client', 'date', 'url', 'area']
+  fields: ['title', 'description', 'priority', 'client', 'date', 'url', 'area'],
+  validate
 })(RequestForm);
 
 export default RequestForm;

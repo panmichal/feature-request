@@ -24,7 +24,6 @@ mongoose.connection.once('open', () => {
   const Request = mongoose.model("Request", RequestSchema);
 
   app.get('/', (request, response) => {
-
     Request.find()
     .then(requests => {
       const initialState = {
@@ -58,11 +57,21 @@ mongoose.connection.once('open', () => {
 
   app.get('/requests', (request, response) =>{
     if (request.query.client) {
-      Request.find({ client: request.query.client }, (error, requests) => {
+      Request.find({ client: request.query.client })
+      .then(requests => {
+        return requests.map(request => request.readable())
+      })
+      .then(requests => {
         response.json(requests);
       })
     } else {
-      Request.find((error, requests) => {
+      Request.find()
+      .then((requests) => {
+        return requests.map(request => {
+          return request.readable()
+        })
+      })
+      .then(requests => {
         response.json(requests);
       })
     }

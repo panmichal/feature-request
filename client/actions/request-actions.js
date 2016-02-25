@@ -2,13 +2,14 @@ import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
 export const SUBMIT_REQUEST = 'submit-request';
-export const ADD_REQUEST = 'add-request';
-export const REQUEST_ADDED = 'request-added';
-export const LOAD_REQUESTS = 'load-requests';
-export const LOAD_CLIENTS = 'load-clients';
-export const LOAD_AREAS = 'load-areas';
-export const SELECT_CLIENT = 'select-client';
-export const SHOW_REQUESTS = 'show-requests';
+export const ADD_REQUEST    = 'add-request';
+export const REQUEST_ADDED  = 'request-added';
+export const LOAD_REQUESTS  = 'load-requests';
+export const LOAD_CLIENTS   = 'load-clients';
+export const LOAD_AREAS     = 'load-areas';
+export const SELECT_CLIENT  = 'select-client';
+export const SHOW_REQUESTS  = 'show-requests';
+export const RESET_FORM     = 'reset-form';
 
 export function submitRequest(data) {
   return function(dispatch) {
@@ -17,7 +18,8 @@ export function submitRequest(data) {
       return axios.post("/requests", data)
       .then(res => res.json())
       .then(request => {
-        dispatch(requestAdded(autocomplete));
+        dispatch(resetForm());
+        dispatch(requestAdded(request));
       })
       .catch(error => {
         dispatch(removeRequest());
@@ -35,6 +37,10 @@ export function requestAdded(data) {
 
 export function removeRequest(id) {
   return { type: SUBMIT_REQUEST, data };
+}
+
+export function resetForm() {
+  return { type: RESET_FORM };
 }
 
 export function loadRequestsForClient(client) {

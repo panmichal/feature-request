@@ -8,7 +8,7 @@ import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhan
 const style = {
   float: 'left',
   margin: 'auto',
-  width: '20%',
+  width: '10%',
   padding: '20px'
 }
 

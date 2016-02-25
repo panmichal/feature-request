@@ -1,4 +1,4 @@
-import {ADD_REQUEST, LOAD_REQUESTS, SHOW_REQUESTS, SELECT_CLIENT} from 'actions/request-actions'
+import {ADD_REQUEST, LOAD_REQUESTS, SHOW_REQUESTS, SELECT_CLIENT, RESET_FORM} from 'actions/request-actions'
 import uuid from 'node-uuid';
 
 export default function (initialState) {
@@ -14,6 +14,10 @@ export default function (initialState) {
         return Object.assign({}, state, { selectedClient: action.client  })
       case SHOW_REQUESTS:
         return Object.assign({}, state, { requests: action.requests});
+      case RESET_FORM:
+        console.log(state);
+        return state;
+        // return Object.assign({}, state, { requests: action.requests});
       default:
         return state;
     }
