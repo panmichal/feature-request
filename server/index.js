@@ -10,6 +10,7 @@ import axios from 'axios';
 import App from './generated/app';
 import mongoose from 'mongoose';
 import RequestSchema from './model/request';
+import RequestRepository from './repository/request';
 
 const app = express();
 
@@ -24,7 +25,7 @@ mongoose.connection.once('open', () => {
   const Request = mongoose.model("Request", RequestSchema);
 
   app.get('/', (request, response) => {
-    Request.find()
+    RequestRepository.findAllByClient(1)
     .then(requests => {
       const initialState = {
         form: 'request',
@@ -57,20 +58,12 @@ mongoose.connection.once('open', () => {
 
   app.get('/requests', (request, response) =>{
     if (request.query.client) {
-      Request.find({ client: request.query.client })
-      .then(requests => {
-        return requests.map(request => request.readable())
-      })
+      RequestRepository.findAllByClient(request.query.client)
       .then(requests => {
         response.json(requests);
       })
     } else {
-      Request.find()
-      .then((requests) => {
-        return requests.map(request => {
-          return request.readable()
-        })
-      })
+      RequestRepository.findAll()
       .then(requests => {
         response.json(requests);
       })
@@ -78,10 +71,10 @@ mongoose.connection.once('open', () => {
   });
 
   app.post('/requests', (request, response) => {
-    const newRequest = new Request(request.body);
-    newRequest.save(() => {
-      response.json(newRequest);
-    });
+    RequestRepository.add(request.body)
+    .then(request => {
+      response.json(request);
+    })
   })
 })
 
