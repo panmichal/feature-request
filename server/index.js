@@ -30,6 +30,7 @@ mongoose.connection.once('open', () => {
       const initialState = {
         form: 'request',
         requests,
+        selectedClient: 1,
         clients: [
           { id: 1, name: 'ClientA'},
           { id: 2, name: 'ClientB'},
@@ -48,7 +49,6 @@ mongoose.connection.once('open', () => {
           <App />
         </Provider>
       );
-
       response.render('app', {
         app: appContent,
         initialState: JSON.stringify(initialState)
@@ -57,9 +57,15 @@ mongoose.connection.once('open', () => {
   });
 
   app.get('/requests', (request, response) =>{
-    Request.find((error, requests) => {
-      response.json(requests);
-    })
+    if (request.query.client) {
+      Request.find({ client: request.query.client }, (error, requests) => {
+        response.json(requests);
+      })
+    } else {
+      Request.find((error, requests) => {
+        response.json(requests);
+      })
+    }
   });
 
   app.post('/requests', (request, response) => {

@@ -7,6 +7,8 @@ export const REQUEST_ADDED = 'request-added';
 export const LOAD_REQUESTS = 'load-requests';
 export const LOAD_CLIENTS = 'load-clients';
 export const LOAD_AREAS = 'load-areas';
+export const SELECT_CLIENT = 'select-client';
+export const SHOW_REQUESTS = 'show-requests';
 
 export function submitRequest(data) {
   return function(dispatch) {
@@ -35,8 +37,31 @@ export function removeRequest(id) {
   return { type: SUBMIT_REQUEST, data };
 }
 
-export function loadRequests() {
-  return { type: LOAD_REQUESTS };
+export function loadRequestsForClient(client) {
+  return function(dispatch) {
+      return axios.get(`/requests?client=${client}`)
+      .then(response => response.data)
+      .then(requests => {
+        dispatch(showRequests(requests));
+      })
+      .catch(error => {
+      });
+  }
+}
+
+export function selectClient(client) {
+  return function(dispatch) {
+    dispatch(loadRequestsForClient(client));
+    dispatch(markSelectedClient(client))
+  }
+}
+
+export function markSelectedClient(client) {
+  return { type: SELECT_CLIENT, client };
+}
+
+export function showRequests(requests) {
+  return { type: SHOW_REQUESTS, requests };
 }
 
 export function loadClients() {

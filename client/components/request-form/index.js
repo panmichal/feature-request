@@ -22,7 +22,7 @@ class RequestForm extends Component {
       fields: {title, description, priority, client, date, url, area},
       handleSubmit
     } = this.props;
-    return <form id="request-form">
+    return <form>
         <Text
           placeholder="Type the request title"
           label="Feature title"

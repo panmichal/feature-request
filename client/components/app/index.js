@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import AppBar from 'material-ui/lib/app-bar';
 import RequestBox from 'components/request-box';
 import RequestList from 'components/request-list';
+import ClientList from 'components/client-list';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as requestActionCreators from 'actions/request-actions';
@@ -18,6 +19,9 @@ const muiTheme = getMuiTheme({
 
 
 class App extends Component {
+  onClientSelect(e, id) {
+    this.props.selectClient(id);
+  }
   render() {
     return <MuiThemeProvider muiTheme={muiTheme}>
       <div>
@@ -25,6 +29,7 @@ class App extends Component {
           title="Feature request app"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
+        <ClientList value={this.props.selectedClient} onSelect={this.onClientSelect.bind(this)} clients={this.props.clients}/>
         <RequestList requests={this.props.requests}/>
         <RequestBox form={this.props.form} handleSubmit={this.props.submitRequest} form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
       </div>
@@ -37,7 +42,8 @@ function mapStateToProps(state) {
     form: 'request',
     clients: state.clients || state.data.clients,
     requests: state.requests ||state.data.requests,
-    areas: state.areas || state.data.areas
+    areas: state.areas || state.data.areas,
+    selectedClient: state.selectedClient || state.data.selectedClient
   };
 }
 

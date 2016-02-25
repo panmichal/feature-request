@@ -5,7 +5,8 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 const style = {
-  float: 'left',
+  display: 'inline-block',
+  // float: 'left',
   margin: 'auto',
   width: '20%',
   padding: '20px'

@@ -3,8 +3,10 @@ import RequestForm from 'components/request-form';
 import Paper from 'material-ui/lib/paper';
 
 const style = {
+  display: 'inline-block',
+  verticalAlign: 'top',
   margin: 'auto',
-  width: '50%',
+  width: '30%',
   padding: '20px'
 }
 
@@ -18,7 +20,9 @@ class RequestBox extends Component {
     })
     return <div id="request-box" style={style}>
      <Paper zDepth={2} >
-       <RequestForm onSubmit={this.props.handleSubmit} form={this.props.form} areas={areas} clients={clients} form={this.props.form}/>
+       <div id="request-form">
+         <RequestForm onSubmit={this.props.handleSubmit} form={this.props.form} areas={areas} clients={clients} form={this.props.form}/>
+       </div>
       </Paper>
     </div>;
   };
