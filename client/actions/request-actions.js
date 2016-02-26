@@ -1,18 +1,19 @@
 import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
-export const SUBMIT_REQUEST = 'submit-request';
-export const ADD_REQUEST    = 'add-request';
-export const REQUEST_ADDED  = 'request-added';
-export const SELECT_CLIENT  = 'select-client';
-export const SHOW_REQUESTS  = 'show-requests';
-export const RESET_FORM     = 'reset-form';
-export const SHOW_ADD_FORM  = 'show-add-form';
-export const HIDE_ADD_FORM  = 'hide-add-form';
-export const SELECT_REQUEST = 'select-request';
-export const SHOW_REQUEST   = 'show-request';
-export const OPEN_REQUEST_DIALOG   = 'open-request-dialog';
-export const HIDE_REQUEST   = 'hide-request';
+export const SUBMIT_REQUEST      = 'submit-request';
+export const ADD_REQUEST         = 'add-request';
+export const REQUEST_ADDED       = 'request-added';
+export const SELECT_CLIENT       = 'select-client';
+export const SHOW_REQUESTS       = 'show-requests';
+export const RESET_FORM          = 'reset-form';
+export const SHOW_ADD_FORM       = 'show-add-form';
+export const HIDE_ADD_FORM       = 'hide-add-form';
+export const SELECT_REQUEST      = 'select-request';
+export const SHOW_REQUEST        = 'show-request';
+export const OPEN_REQUEST_DIALOG = 'open-request-dialog';
+export const HIDE_REQUEST        = 'hide-request';
+export const RESOLVE_REQUEST     = 'resolve-request';
 
 export function submitRequest(data) {
   return function(dispatch) {
@@ -22,7 +23,6 @@ export function submitRequest(data) {
         dispatch(selectClient(parseInt(request.client)));
       })
       .catch(error => {
-        dispatch(removeRequest());
       });
   }
 }
@@ -55,7 +55,19 @@ export function requestAdded(data) {
 }
 
 export function removeRequest(id) {
-  return { type: SUBMIT_REQUEST, data };
+  return { type: REMOVE_REQUEST, data };
+}
+
+export function resolveRequest(request) {
+  return function(dispatch) {
+      return axios.patch("/requests/" + request.id, { resolved: true })
+      .then(res => res.data)
+      .then(request => {
+        dispatch(loadRequestsForClient(request.client));
+      })
+      .catch(error => {
+      });
+  }
 }
 
 export function resetForm() {

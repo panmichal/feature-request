@@ -9,27 +9,50 @@ import ActionArchive from 'material-ui/lib/svg-icons/action/done';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
 
-const nestedItems = (r) => {
-  return [
-    <ListItem key={1}  leftIcon={<ActionDelete />} primaryText="Delete"/>,
-    <ListItem key={2}  leftIcon={<ActionArchive />} primaryText="Resolve"/>
-  ]
+const nestedItems = function (r) {
+  const actions = [<ListItem key={r.id + "delete"} leftIcon={<ActionDelete />} primaryText="Delete"/>];
+  return r.resolved
+    ? actions
+    : [...actions, <ListItem key={r.id + "resolve"} onTouchTap={this.props.resolve.bind(null, r)} leftIcon={<ActionArchive />} primaryText="Resolve"/>]
+}
+
+const getModalTitle = (data) => {
+  const title = data.currentRequest && data.open === true
+    ? data.currentRequest.title + " - due date: " + data.currentRequest.date
+    : ""
+
+  return title;
+}
+const getModalContent = (data) => {
+  const content = data.currentRequest && data.open === true
+    ? data.currentRequest.description
+    : ""
+
+  return content;
+}
+
+const getLeftIcon = (request) => {
+  return request.resolved ? <ActionArchive /> : <ContentDrafts />;
 }
 
 class RequestList extends Component {
   render() {
     const requests = this.props.requests.map(r => {
-      return <ListItem key={r.id}  onTouchTap={this.props.showRequest.bind(this, r)} leftIcon={<ContentDrafts />} nestedItems={nestedItems(r)} primaryText={r.title + "   -   " + r.date}/>
+      return <ListItem key={r.id}
+        onTouchTap={this.props.showRequest.bind(this, r)}
+        leftIcon={getLeftIcon(r)}
+        nestedItems={nestedItems.call(this, r)}
+        primaryText={r.title + "   -   " + r.date}/>
     })
     return <div id="request-list" className="box">
 
      <Paper zDepth={1}>
        <Dialog
-          title="Dialog With Actions"
+          title={getModalTitle(this.props.modalData)}
           modal={false}
           open={this.props.modalData.open}
           onRequestClose={this.props.hideRequest}
-        />
+        >{getModalContent(this.props.modalData)}</Dialog>
        <List subheader="Client's requests">
          <ListItem key="add" onTouchTap={this.props.onClickAdd} primaryText={<RaisedButton onTouchTap={this.props.onClickAdd} primary={true} label="Add new"/>}></ListItem>
          {requests}

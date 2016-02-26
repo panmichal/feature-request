@@ -70,6 +70,16 @@ const controller = (app) => {
       response.json(request);
     })
   });
+
+  app.patch('/requests/:id', (request, response) => {
+    RequestRepository.update(request.params.id, request.body)
+    .then(request => {
+      response.json(request);
+    })
+    .catch(error => {
+      response.status(400).json(error);
+    })
+  });
 }
 
 export default controller;

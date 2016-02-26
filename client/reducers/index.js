@@ -9,7 +9,8 @@ import {
   SHOW_REQUEST,
   HIDE_REQUEST,
   SELECT_REQUEST,
-  OPEN_REQUEST_DIALOG
+  OPEN_REQUEST_DIALOG,
+  RESOLVE_REQUEST
 } from 'actions/request-actions'
 import uuid from 'node-uuid';
 

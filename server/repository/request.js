@@ -21,6 +21,9 @@ export default {
       })
     })
   },
+  update(id, data) {
+    return Request.findOneAndUpdate({ _id: id }, data, { new: true });
+  },
   add(data) {
     const newRequest = new Request(data);
 

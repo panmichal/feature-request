@@ -36,6 +36,7 @@ class App extends Component {
       ? <RequestList
         modalData={this.props.featureDescriptionModal}
         onClickAdd={this.props.showAddForm}
+        resolve={this.props.resolveRequest}
         requests={this.props.requests}
         showRequest={this.props.showRequest}
         hideRequest={this.props.hideRequest}/>
