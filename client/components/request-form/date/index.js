@@ -13,7 +13,6 @@ class Date extends Component {
     return <div>
       <DatePicker
           hintText={this.props.placeholder}
-          container="inline"
           onChange={this.props.onChange}/>
     </div>;
   };
