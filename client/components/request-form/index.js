@@ -31,6 +31,16 @@ const validate = values => {
   return errors;
 }
 
+const getPriorities = () => {
+  return [
+    { id: 1, value: "1 - not important at all"},
+    { id: 2, value: "2 - nice to have"},
+    { id: 3, value: "3 - will help a lot"},
+    { id: 4, value: "4 - really important"},
+    { id: 5, value: "5 - deal breaker"}
+  ]
+}
+
 class RequestForm extends Component {
   componentDidMount() {
   }
@@ -53,10 +63,7 @@ class RequestForm extends Component {
           <Select {...client} items={this.props.clients} label="Client"/>
           </div>
           <div className="box">
-          <Number
-            placeholder="Set request priority"
-            label="Priority"
-            {...priority}/>
+          <Select {...priority} items={getPriorities()} label="Priority"/>
           <Date placeholder="Target date"/>
           <Text
             {...url}

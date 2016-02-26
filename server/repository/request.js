@@ -18,6 +18,20 @@ export default {
       })
     })
   },
+  reorderForClient(client, addedPriority) {
+    console.log(addedPriority);
+    return Request.find({ client, priority: { $lte: addedPriority } })
+    .then(requests => {
+      let updates = [];
+      requests.forEach(request => {
+        if (request.priority > 0) {
+          updates.push(Request.update({ _id: request._id}, { $set: { priority: request.priority - 1 }}))
+        }
+      })
+
+      return Promise.all(updates);
+    })
+  },
   findAll() {
     return Request.find()
     .then(requests => {

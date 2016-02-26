@@ -67,6 +67,12 @@ const controller = (app) => {
   app.post('/requests', (request, response) => {
     RequestRepository.add(request.body)
     .then(request => {
+      return RequestRepository.reorderForClient(request.client, request.priority)
+        .then(() => {
+          return request;
+        })
+    })
+    .then(request => {
       response.json(request);
     })
   });
