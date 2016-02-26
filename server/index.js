@@ -9,10 +9,11 @@ import {Provider} from 'react-redux';
 import App from './generated/app';
 import mongoose from 'mongoose';
 import requestController from './controller/request';
+import config from './config/config';
 
 const app = express();
 
-mongoose.connect('localhost:27017');
+mongoose.connect(`${config.db.host}:${config.db.port}`);
 mongoose.connection.on("error", function(err) {
   console.log(err);
 });
