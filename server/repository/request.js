@@ -12,6 +12,11 @@ export default {
         return request.readable();
       })
     })
+    .then(requests => {
+      return [...requests].sort((a, b) => {
+        return b.priority - a.priority;
+      })
+    })
   },
   findAll() {
     return Request.find()

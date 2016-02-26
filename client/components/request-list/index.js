@@ -9,7 +9,7 @@ import ActionArchive from 'material-ui/lib/svg-icons/action/done';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
 
-const nestedItems = function (r) {
+const getActions = function (r) {
   const actions = [<ListItem key={r.id + "delete"} leftIcon={<ActionDelete />} primaryText="Delete"/>];
   return r.resolved
     ? actions
@@ -41,7 +41,7 @@ class RequestList extends Component {
       return <ListItem key={r.id}
         onTouchTap={this.props.showRequest.bind(this, r)}
         leftIcon={getLeftIcon(r)}
-        nestedItems={nestedItems.call(this, r)}
+        nestedItems={getActions.call(this, r)}
         primaryText={r.title + "   -   " + r.date}/>
     })
     return <div id="request-list" className="box">
