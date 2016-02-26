@@ -8,13 +8,14 @@ export const SELECT_CLIENT  = 'select-client';
 export const SHOW_REQUESTS  = 'show-requests';
 export const RESET_FORM     = 'reset-form';
 export const SHOW_ADD_FORM  = 'show-add-form';
+export const HIDE_ADD_FORM  = 'hide-add-form';
 
 export function submitRequest(data) {
   return function(dispatch) {
       return axios.post("/requests", data)
       .then(res => res.data)
       .then(request => {
-        dispatch(selectClient(request.client));
+        dispatch(selectClient(parseInt(request.client)));
       })
       .catch(error => {
         dispatch(removeRequest());
@@ -39,8 +40,11 @@ export function resetForm() {
 }
 
 export function showAddForm() {
-  console.log('ccacsacsacsa');
   return { type: SHOW_ADD_FORM };
+}
+
+export function hideAddForm() {
+  return { type: HIDE_ADD_FORM };
 }
 
 export function loadRequestsForClient(client) {

@@ -25,6 +25,7 @@ class App extends Component {
   render() {
     const form = this.props.view === 'form' ? <RequestBox
       handleSubmit={this.props.submitRequest}
+      hideForm={this.props.hideAddForm}
       form={this.props.form}
       clients={this.props.clients}
       areas={this.props.areas}/> : "";

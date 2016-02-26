@@ -1,4 +1,4 @@
-import {ADD_REQUEST, LOAD_REQUESTS, SHOW_REQUESTS, SELECT_CLIENT, RESET_FORM, SHOW_ADD_FORM} from 'actions/request-actions'
+import {ADD_REQUEST, LOAD_REQUESTS, SHOW_REQUESTS, SELECT_CLIENT, RESET_FORM, SHOW_ADD_FORM, HIDE_ADD_FORM} from 'actions/request-actions'
 import uuid from 'node-uuid';
 
 export default function (initialState) {
@@ -16,6 +16,8 @@ export default function (initialState) {
         return Object.assign({}, state, { requests: action.requests}, { view: 'list' });
       case SHOW_ADD_FORM:
         return Object.assign({}, state, { view: 'form'});
+      case HIDE_ADD_FORM:
+        return Object.assign({}, state, { view: 'list'});
       case RESET_FORM:
         return state;
       default:
