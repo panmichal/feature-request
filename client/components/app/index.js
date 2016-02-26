@@ -23,12 +23,12 @@ class App extends Component {
     this.props.selectClient(id);
   }
   render() {
-    const form = this.props.showForm ? <RequestBox
+    const form = this.props.view === 'form' ? <RequestBox
       handleSubmit={this.props.submitRequest}
       form={this.props.form}
       clients={this.props.clients}
-      areas={this.props.areas}/> : ""
-    const requests = this.props.selectedClient && !this.props.showForm ? <RequestList requests={this.props.requests}/> : ""
+      areas={this.props.areas}/> : "";
+    const requests = this.props.selectedClient && this.props.view === 'list' ? <RequestList onClickAdd={this.props.showAddForm} requests={this.props.requests}/> : ""
     return <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar
@@ -52,7 +52,8 @@ function mapStateToProps(state) {
     clients: state.clients || state.data.clients,
     requests: state.requests ||state.data.requests,
     areas: state.areas || state.data.areas,
-    selectedClient: state.selectedClient || state.data.selectedClient
+    selectedClient: state.selectedClient || state.data.selectedClient,
+    view: state.view || state.data.view
   };
 }
 

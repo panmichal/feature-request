@@ -31,6 +31,7 @@ mongoose.connection.once('open', () => {
         form: 'request',
         requests,
         selectedClient: 2,
+        view: 'list',
         clients: [
           { id: 1, name: 'ClientA'},
           { id: 2, name: 'ClientB'},
