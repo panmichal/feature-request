@@ -7,6 +7,7 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 import ActionArchive from 'material-ui/lib/svg-icons/action/done';
 import RaisedButton from 'material-ui/lib/raised-button';
+import Dialog from 'material-ui/lib/dialog';
 
 const nestedItems = (r) => {
   return [
@@ -18,10 +19,17 @@ const nestedItems = (r) => {
 class RequestList extends Component {
   render() {
     const requests = this.props.requests.map(r => {
-      return <ListItem key={r.id}  leftIcon={<ContentDrafts />} nestedItems={nestedItems(r)} primaryText={r.title + "   -   " + r.date}/>
+      return <ListItem key={r.id}  onTouchTap={this.props.showRequest.bind(this, r)} leftIcon={<ContentDrafts />} nestedItems={nestedItems(r)} primaryText={r.title + "   -   " + r.date}/>
     })
     return <div id="request-list" className="box">
+
      <Paper zDepth={1}>
+       <Dialog
+          title="Dialog With Actions"
+          modal={false}
+          open={this.props.modalData.open}
+          onRequestClose={this.props.hideRequest}
+        />
        <List subheader="Client's requests">
          <ListItem key="add" onTouchTap={this.props.onClickAdd} primaryText={<RaisedButton onTouchTap={this.props.onClickAdd} primary={true} label="Add new"/>}></ListItem>
          {requests}

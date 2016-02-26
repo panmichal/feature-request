@@ -28,6 +28,10 @@ const controller = (app) => {
           { id: 3, name: 'Claims'},
           { id: 4, name: 'Reports'}
         ],
+        featureDescriptionModal: {
+          open: false,
+          currentRequest: null
+        },
         initialValues: {
           client: 1,
           area: 1

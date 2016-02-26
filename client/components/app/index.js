@@ -33,7 +33,12 @@ class App extends Component {
           areas={this.props.areas}/>
       : "";
     const requests = this.props.selectedClient && this.props.view === 'list'
-      ? <RequestList onClickAdd={this.props.showAddForm} requests={this.props.requests}/>
+      ? <RequestList
+        modalData={this.props.featureDescriptionModal}
+        onClickAdd={this.props.showAddForm}
+        requests={this.props.requests}
+        showRequest={this.props.showRequest}
+        hideRequest={this.props.hideRequest}/>
       : ""
     return <MuiThemeProvider muiTheme={muiTheme}>
         <div>
@@ -53,6 +58,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  //short-circuit operators are needed for consistency between server-side and client-side render
   return {
     form: 'request',
     clients: state.clients || state.data.clients,
@@ -60,7 +66,8 @@ function mapStateToProps(state) {
     areas: state.areas || state.data.areas,
     selectedClient: state.selectedClient || state.data.selectedClient,
     view: state.view || state.data.view,
-    initialValues: state.initialValues || state.data.initialValues
+    initialValues: state.initialValues || state.data.initialValues,
+    featureDescriptionModal: state.featureDescriptionModal || state.data.featureDescriptionModal,
   };
 }
 

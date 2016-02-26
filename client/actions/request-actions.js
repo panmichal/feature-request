@@ -9,6 +9,10 @@ export const SHOW_REQUESTS  = 'show-requests';
 export const RESET_FORM     = 'reset-form';
 export const SHOW_ADD_FORM  = 'show-add-form';
 export const HIDE_ADD_FORM  = 'hide-add-form';
+export const SELECT_REQUEST = 'select-request';
+export const SHOW_REQUEST   = 'show-request';
+export const OPEN_REQUEST_DIALOG   = 'open-request-dialog';
+export const HIDE_REQUEST   = 'hide-request';
 
 export function submitRequest(data) {
   return function(dispatch) {
@@ -25,6 +29,25 @@ export function submitRequest(data) {
 
 export function addRequest(data) {
   return { type: ADD_REQUEST, data };
+}
+
+export function showRequest(request) {
+  return function(dispatch) {
+    dispatch(selectRequest(request));
+    dispatch(openRequestDialog());
+  }
+}
+
+export function hideRequest() {
+  return { type: HIDE_REQUEST }
+}
+
+export function openRequestDialog() {
+  return { type: OPEN_REQUEST_DIALOG };
+}
+
+export function selectRequest(request) {
+  return { type: SELECT_REQUEST, request}
 }
 
 export function requestAdded(data) {
