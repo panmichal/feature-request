@@ -10,7 +10,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
 
 const getActions = function (r) {
-  const actions = [<ListItem key={r.id + "delete"} leftIcon={<ActionDelete />} primaryText="Delete"/>];
+  const actions = [<ListItem key={r.id + "delete"} onTouchTap={this.props.delete.bind(null, r)} leftIcon={<ActionDelete />} primaryText="Delete"/>];
   return r.resolved
     ? actions
     : [...actions, <ListItem key={r.id + "resolve"} onTouchTap={this.props.resolve.bind(null, r)} leftIcon={<ActionArchive />} primaryText="Resolve"/>]

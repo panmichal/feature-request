@@ -77,6 +77,13 @@ const controller = (app) => {
     })
   });
 
+  app.delete('/requests/:id', (request, response) => {
+    RequestRepository.delete(request.params.id)
+    .then(request => {
+      response.status(200).send();
+    })
+  });
+
   app.patch('/requests/:id', (request, response) => {
     RequestRepository.update(request.params.id, request.body)
     .then(request => {

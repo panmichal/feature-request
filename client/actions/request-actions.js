@@ -70,6 +70,17 @@ export function resolveRequest(request) {
   }
 }
 
+export function deleteRequest(request) {
+  return function(dispatch) {
+      return axios.delete("/requests/" + request.id)
+      .then(() => {
+        dispatch(loadRequestsForClient(request.client));
+      })
+      .catch(error => {
+      });
+  }
+}
+
 export function resetForm() {
   return { type: RESET_FORM };
 }

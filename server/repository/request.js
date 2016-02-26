@@ -42,6 +42,9 @@ export default {
   update(id, data) {
     return Request.findOneAndUpdate({ _id: id }, data, { new: true });
   },
+  delete(id) {
+    return Request.findOneAndRemove({ _id: id });
+  },
   add(data) {
     const newRequest = new Request(data);
 
