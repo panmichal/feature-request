@@ -18,13 +18,12 @@ export default {
       })
     })
   },
-  reorderForClient(client, addedPriority) {
-    console.log(addedPriority);
-    return Request.find({ client, priority: { $lte: addedPriority } })
+  reorderForClient(addedRequest) {
+    return Request.find({ client: addedRequest.client, priority: { $lte: addedRequest.priority } })
     .then(requests => {
       let updates = [];
       requests.forEach(request => {
-        if (request.priority > 0) {
+        if (request.priority > 0 && !request._id.equals(addedRequest.id)) {
           updates.push(Request.update({ _id: request._id}, { $set: { priority: request.priority - 1 }}))
         }
       })
