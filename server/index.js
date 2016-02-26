@@ -30,7 +30,7 @@ mongoose.connection.once('open', () => {
       const initialState = {
         form: 'request',
         requests,
-        selectedClient: 1,
+        selectedClient: 2,
         clients: [
           { id: 1, name: 'ClientA'},
           { id: 2, name: 'ClientB'},

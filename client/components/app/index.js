@@ -23,6 +23,12 @@ class App extends Component {
     this.props.selectClient(id);
   }
   render() {
+    const form = this.props.showForm ? <RequestBox
+      handleSubmit={this.props.submitRequest}
+      form={this.props.form}
+      clients={this.props.clients}
+      areas={this.props.areas}/> : ""
+    const requests = this.props.selectedClient && !this.props.showForm ? <RequestList requests={this.props.requests}/> : ""
     return <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar
@@ -31,9 +37,9 @@ class App extends Component {
           />
           <div id="container">
             <ClientList value={this.props.selectedClient} onSelect={this.onClientSelect.bind(this)} clients={this.props.clients}/>
-            <RequestBox form={this.props.form} handleSubmit={this.props.submitRequest} form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
+            {form}
             <div className="container25"></div>
-            <RequestList requests={this.props.requests}/>
+            {requests}
           </div>
         </div>
     </MuiThemeProvider>;
