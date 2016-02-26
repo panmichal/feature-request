@@ -40,28 +40,32 @@ class RequestForm extends Component {
       handleSubmit
     } = this.props;
     return <form>
-        <Text
-          placeholder="Type the request title"
-          label="Feature title"
-          {...title}/>
-        <TextArea
-          placeholder="Type the request description"
-          label="Feature description"
-          rows={4}
-          {...description}/>
-        <Select {...client} items={this.props.clients} label="Client"/>
-        <Number
-          placeholder="Set request priority"
-          label="Priority"
-          {...priority}/>
-        <Date placeholder="Target date"/>
-        <Text
-          {...url}
-          placeholder="url"
-          label="Ticket URL"/>
-        <Select {...area} items={this.props.areas} label="Area"/>
-        <div id="submit-button">
-          <RaisedButton onClick={this.props.handleSubmit} label="Submit" primary={true} />
+        <div className="box">
+          <Text
+            placeholder="Type the request title"
+            label="Feature title"
+            {...title}/>
+          <TextArea
+            placeholder="Type the request description"
+            label="Feature description"
+            rows={4}
+            {...description}/>
+          <Select {...client} items={this.props.clients} label="Client"/>
+          </div>
+          <div className="box">
+          <Number
+            placeholder="Set request priority"
+            label="Priority"
+            {...priority}/>
+          <Date placeholder="Target date"/>
+          <Text
+            {...url}
+            placeholder="url"
+            label="Ticket URL"/>
+          <Select {...area} items={this.props.areas} label="Area"/>
+          <div id="submit-button">
+            <RaisedButton onClick={this.props.handleSubmit} label="Submit" primary={true} />
+          </div>
         </div>
       </form>;
   };

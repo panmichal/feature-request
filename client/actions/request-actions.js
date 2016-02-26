@@ -4,22 +4,17 @@ import axios from 'axios';
 export const SUBMIT_REQUEST = 'submit-request';
 export const ADD_REQUEST    = 'add-request';
 export const REQUEST_ADDED  = 'request-added';
-export const LOAD_REQUESTS  = 'load-requests';
-export const LOAD_CLIENTS   = 'load-clients';
-export const LOAD_AREAS     = 'load-areas';
 export const SELECT_CLIENT  = 'select-client';
 export const SHOW_REQUESTS  = 'show-requests';
 export const RESET_FORM     = 'reset-form';
 
 export function submitRequest(data) {
   return function(dispatch) {
-      dispatch(selectClient(data.client));
-
       return axios.post("/requests", data)
-      .then(res => res.json())
+      .then(res => res.data)
       .then(request => {
-        dispatch(resetForm());
-        dispatch(requestAdded(request));
+        console.log(request);
+        dispatch(selectClient(request.client));
       })
       .catch(error => {
         dispatch(removeRequest());
@@ -68,12 +63,4 @@ export function markSelectedClient(client) {
 
 export function showRequests(requests) {
   return { type: SHOW_REQUESTS, requests };
-}
-
-export function loadClients() {
-  return { type: LOAD_CLIENTS };
-}
-
-export function loadAreas() {
-  return { type: LOAD_AREAS };
 }

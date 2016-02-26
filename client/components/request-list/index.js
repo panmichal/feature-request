@@ -5,11 +5,7 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 const style = {
-  display: 'inline-block',
-  // float: 'left',
-  margin: 'auto',
-  width: '20%',
-  padding: '20px'
+  // display: 'inline-block',
 }
 
 class RequestList extends Component {
@@ -18,7 +14,7 @@ class RequestList extends Component {
       return <ListItem key={r.id}  primaryText={r.title}/>
     })
     return <div id="request-list" style={style}>
-     <Paper zDepth={2}>
+     <Paper zDepth={1}>
        <List>
          {requests}
        </List>

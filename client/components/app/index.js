@@ -24,15 +24,18 @@ class App extends Component {
   }
   render() {
     return <MuiThemeProvider muiTheme={muiTheme}>
-      <div>
-        <AppBar
-          title="Feature request app"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
+        <div>
+          <AppBar
+            title="Feature request app"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
-        <ClientList value={this.props.selectedClient} onSelect={this.onClientSelect.bind(this)} clients={this.props.clients}/>
-        <RequestList requests={this.props.requests}/>
-        <RequestBox form={this.props.form} handleSubmit={this.props.submitRequest} form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
-      </div>
+          <div id="container">
+            <ClientList value={this.props.selectedClient} onSelect={this.onClientSelect.bind(this)} clients={this.props.clients}/>
+            <RequestBox form={this.props.form} handleSubmit={this.props.submitRequest} form={this.props.form} clients={this.props.clients} areas={this.props.areas}/>
+            <div className="container25"></div>
+            <RequestList requests={this.props.requests}/>
+          </div>
+        </div>
     </MuiThemeProvider>;
   }
 }

@@ -9,7 +9,7 @@ export default function (initialState) {
           ...action.data,
           id: uuid.v4()
         }
-        return Object.assign({}, state, { requests: [...state.requests, newRequest]});
+        return Object.assign({}, state, { requests: [...state.requests, action.data]});
       case SELECT_CLIENT:
         return Object.assign({}, state, { selectedClient: action.client  })
       case SHOW_REQUESTS:
@@ -17,7 +17,6 @@ export default function (initialState) {
       case RESET_FORM:
         console.log(state);
         return state;
-        // return Object.assign({}, state, { requests: action.requests});
       default:
         return state;
     }
