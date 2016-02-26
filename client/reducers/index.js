@@ -11,6 +11,7 @@ export default function (initialState) {
         }
         return Object.assign({}, state, { requests: [...state.requests, action.data]});
       case SELECT_CLIENT:
+        console.log(action.client)
         return Object.assign({}, state, { selectedClient: action.client  })
       case SHOW_REQUESTS:
         return Object.assign({}, state, { requests: action.requests}, { view: 'list' });

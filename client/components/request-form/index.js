@@ -75,6 +75,9 @@ RequestForm = reduxForm({
   form: 'request',
   fields: ['title', 'description', 'priority', 'client', 'date', 'url', 'area'],
   validate
-})(RequestForm);
+},
+state => ({
+  initialValues: state.initialValues || state.data.initialValues
+}))(RequestForm);
 
 export default RequestForm;

@@ -27,7 +27,11 @@ const controller = (app) => {
           { id: 2, name: 'Billing'},
           { id: 3, name: 'Claims'},
           { id: 4, name: 'Reports'}
-        ]
+        ],
+        initialValues: {
+          client: 1,
+          area: 1
+        }
       };
       const store = createStore((state=initialState) => state);
       const appContent = ReactDOMServer.renderToString(

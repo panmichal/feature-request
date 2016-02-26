@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {reset} from 'redux-form';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import {deepOrange500} from 'material-ui/lib/styles/colors';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
@@ -23,13 +24,17 @@ class App extends Component {
     this.props.selectClient(id);
   }
   render() {
-    const form = this.props.view === 'form' ? <RequestBox
-      handleSubmit={this.props.submitRequest}
-      hideForm={this.props.hideAddForm}
-      form={this.props.form}
-      clients={this.props.clients}
-      areas={this.props.areas}/> : "";
-    const requests = this.props.selectedClient && this.props.view === 'list' ? <RequestList onClickAdd={this.props.showAddForm} requests={this.props.requests}/> : ""
+    const form = this.props.view === 'form'
+      ? <RequestBox
+          handleSubmit={this.props.submitRequest}
+          hideForm={this.props.hideAddForm}
+          form={this.props.form}
+          clients={this.props.clients}
+          areas={this.props.areas}/>
+      : "";
+    const requests = this.props.selectedClient && this.props.view === 'list'
+      ? <RequestList onClickAdd={this.props.showAddForm} requests={this.props.requests}/>
+      : ""
     return <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <AppBar
@@ -54,7 +59,8 @@ function mapStateToProps(state) {
     requests: state.requests ||state.data.requests,
     areas: state.areas || state.data.areas,
     selectedClient: state.selectedClient || state.data.selectedClient,
-    view: state.view || state.data.view
+    view: state.view || state.data.view,
+    initialValues: state.initialValues || state.data.initialValues
   };
 }
 
