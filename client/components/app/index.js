@@ -38,8 +38,8 @@ class App extends Component {
           <div id="container">
             <ClientList value={this.props.selectedClient} onSelect={this.onClientSelect.bind(this)} clients={this.props.clients}/>
             {form}
-            <div className="container25"></div>
             {requests}
+            <div className="container25"></div>
           </div>
         </div>
     </MuiThemeProvider>;

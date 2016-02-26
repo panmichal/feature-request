@@ -19,7 +19,7 @@ class ClientList extends Component {
     })
     return <div id="client-list" className="box" style={style}>
      <Paper zDepth={1}>
-       <SelectableList subheader="Show requests" valueLink={ {value: this.props.value || this.props.clients[0].id, requestChange: this.props.onSelect }}>
+       <SelectableList subheader="Select client" valueLink={ {value: this.props.value || this.props.clients[0].id, requestChange: this.props.onSelect }}>
          {clients}
        </SelectableList>
       </Paper>
