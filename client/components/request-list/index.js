@@ -24,7 +24,7 @@ const getModalTitle = (data) => {
   return title;
 }
 const getModalContent = (data) => {
-  const ticketLink = data.currentRequest.url ? " Ticket URL: " + data.currentRequest.url : ""
+  const ticketLink = data.currentRequest && data.currentRequest.url ? " Ticket URL: " + data.currentRequest.url : "";
   const content = data.currentRequest && data.open === true
     ? data.currentRequest.description + ticketLink
     : ""
