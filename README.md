@@ -2,8 +2,17 @@
 
 ## Tech stack
 
+The app uses the isomorphic (http://isomorphic.net) and singe-state-atom (Redux) patterns 
+
  - React.js + Redux - client-side
  - Express.js - server
+ - MongoDB - storage
+ 
+## What's missing
+
+ - tests
+ - server-side validation
+ - authentication and authorization
 
 ## Running development mode
 
